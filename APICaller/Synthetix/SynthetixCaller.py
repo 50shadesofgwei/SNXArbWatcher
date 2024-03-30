@@ -33,7 +33,4 @@ class SynthetixCaller:
                     logger.error(f"SynthetixAPICaller - Error processing market data for {symbol}: {e}")
         return market_funding_rates
 
-    def test(self):
-        self.client.spot.
-
 
