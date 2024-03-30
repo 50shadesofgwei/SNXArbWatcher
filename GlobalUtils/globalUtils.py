@@ -9,10 +9,8 @@ from GlobalUtils.logger import *
 load_dotenv()
 
 class eventsDirectory(Enum):
-    CLOSE_ALL_POSITIONS = "close_positions"
     OPPORTUNITY_FOUND = "opportunity_found"
-    POSITION_OPENED = "position_opened"
-    POSITION_CLOSED = "position_closed"
+
 
 
 def initialise_client() -> Web3:

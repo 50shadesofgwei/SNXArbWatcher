@@ -23,7 +23,7 @@ class SynthetixCaller:
                 try:
                     market_data = markets_by_name[symbol]
                     funding_rate_24 = market_data['current_funding_rate']
-                    funding_rate = funding_rate_24 / 3  # Assuming this is the correct calculation
+                    funding_rate = funding_rate_24 / 3
                     market_funding_rates.append({
                         'exchange': 'Synthetix',  # Change this to the correct exchange name if needed
                         'symbol': symbol,
@@ -32,5 +32,8 @@ class SynthetixCaller:
                 except KeyError as e:
                     logger.error(f"SynthetixAPICaller - Error processing market data for {symbol}: {e}")
         return market_funding_rates
+
+    def test(self):
+        self.client.spot.
 
 

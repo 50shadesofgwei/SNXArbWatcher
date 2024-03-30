@@ -3,10 +3,6 @@ from pubsub import pub
 from APICaller.master.MasterCaller import MasterCaller
 from MatchingEngine.MatchingEngine import matchingEngine
 from MatchingEngine.profitabilityChecks.checkProfitability import ProfitabilityChecker
-from TxExecution.Master.MasterPositionController import MasterPositionController
-from PositionMonitor.Master.MasterPositionMonitor import MasterPositionMonitor
-from PositionMonitor.Master.MasterPositionMonitorUtils import *
-from PositionMonitor.TradeDatabase.TradeDatabase import TradeLogger
 from GlobalUtils.globalUtils import *
 import threading
 
@@ -16,10 +12,6 @@ class Main:
         self.caller = MasterCaller()
         self.matching_engine = matchingEngine()
         self.profitability_checker = ProfitabilityChecker()
-        self.position_controller = MasterPositionController()
-        self.position_controller.subscribe_to_events()
-        self.position_monitor = MasterPositionMonitor()
-        self.trade_logger = TradeLogger()
     
     @log_function_call
     def search_for_opportunities(self):
