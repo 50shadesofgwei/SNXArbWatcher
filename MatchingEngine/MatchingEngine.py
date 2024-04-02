@@ -17,7 +17,6 @@ class matchingEngine:
                 long_exchange = 'Binance'
                 short_exchange = 'Synthetix'
             else:
-                # Shorts pay longs, so we want to be long on Synthetix (receiving) and short on Binance (hedging)
                 long_exchange = 'Synthetix'
                 short_exchange = 'Binance'
 
@@ -25,7 +24,8 @@ class matchingEngine:
                 'long_exchange': long_exchange,
                 'short_exchange': short_exchange,
                 'symbol': normalize_symbol(opportunity['symbol']),
-                'funding_rate': funding_rate,  # Reflects Synthetix funding rate
+                'long_rate_8hr': funding_rate,
+                'short_rate_8hr': None
             }
             arbitrage_opportunities.append(arbitrage_opportunity)
         

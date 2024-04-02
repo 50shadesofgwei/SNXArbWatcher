@@ -25,7 +25,7 @@ class SynthetixCaller:
                     funding_rate_24 = market_data['current_funding_rate']
                     funding_rate = funding_rate_24 / 3
                     market_funding_rates.append({
-                        'exchange': 'Synthetix',  # Change this to the correct exchange name if needed
+                        'exchange': 'Synthetix', 
                         'symbol': symbol,
                         'funding_rate': funding_rate,
                     })

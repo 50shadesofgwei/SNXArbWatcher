@@ -1,6 +1,5 @@
 from GlobalUtils.globalUtils import *
 from GlobalUtils.logger import *
-from TxExecution.Master.MasterPositionController import MasterPositionController
 
 class ProfitabilityChecker:
     exchange_fees = {
@@ -9,12 +8,7 @@ class ProfitabilityChecker:
     }
 
     def __init__(self):
-        self.position_controller = MasterPositionController()
-
-    @log_function_call
-    def get_capital_amount(self, opportunity) -> float:
-        capital = self.position_controller.get_trade_size(opportunity)
-        return capital
+        pass
 
     @log_function_call
     def get_exchange_fee(self, exchange: str) -> float:
@@ -32,7 +26,7 @@ class ProfitabilityChecker:
         for opportunity in opportunities:
             funding_rate = float(opportunity["funding_rate"])
             
-            if funding_rate > max_profit:
+            if abs(funding_rate) > max_profit:
                 max_profit = funding_rate
                 most_profitable = opportunity
 

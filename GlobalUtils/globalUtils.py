@@ -9,7 +9,8 @@ from GlobalUtils.logger import *
 load_dotenv()
 
 class eventsDirectory(Enum):
-    OPPORTUNITY_FOUND = "opportunity_found"
+    FUNDING_RATE_DATA = "FUNDING_RATE_DATA"
+
 
 
 
