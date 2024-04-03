@@ -7,29 +7,42 @@ class matchingEngine:
 
     @log_function_call
     def find_arbitrage_opportunities_for_symbol(self, sorted_rates):
-        synthetix_opportunities = [rate for rate in sorted_rates if rate['exchange'] == 'Synthetix']
-        
+        synthetix_rates = [rate for rate in sorted_rates if rate['exchange'] == 'Synthetix']
+        binance_rates = [rate for rate in sorted_rates if rate['exchange'] == 'Binance']
+
         arbitrage_opportunities = []
-        for opportunity in synthetix_opportunities:
-            funding_rate = float(opportunity['funding_rate'])
-            
-            if funding_rate > 0:
-                long_exchange = 'Binance'
-                short_exchange = 'Synthetix'
-            else:
+        for synthetix_rate in synthetix_rates:
+            symbol = normalize_symbol(synthetix_rate['symbol'])
+            funding_rate_synthetix = float(synthetix_rate['funding_rate'])
+
+            corresponding_binance_rate = next((rate for rate in binance_rates if normalize_symbol(rate['symbol']) == symbol), None)
+            if corresponding_binance_rate is None:
+                continue 
+
+            funding_rate_binance = float(corresponding_binance_rate['funding_rate'])
+
+            if funding_rate_synthetix > funding_rate_binance:
                 long_exchange = 'Synthetix'
                 short_exchange = 'Binance'
+                synthetix_rate_8hr = funding_rate_synthetix
+                binance_rate_8hr = funding_rate_binance
+            else:
+                long_exchange = 'Binance'
+                short_exchange = 'Synthetix'
+                synthetix_rate_8hr = funding_rate_binance
+                binance_rate_8hr = funding_rate_synthetix
 
             arbitrage_opportunity = {
                 'long_exchange': long_exchange,
                 'short_exchange': short_exchange,
-                'symbol': normalize_symbol(opportunity['symbol']),
-                'long_rate_8hr': funding_rate,
-                'short_rate_8hr': None
+                'symbol': symbol,
+                'binance_rate_8hr': binance_rate_8hr,
+                'synthetix_rate_8hr': synthetix_rate_8hr
             }
             arbitrage_opportunities.append(arbitrage_opportunity)
-        
+
         return arbitrage_opportunities
+
 
     @log_function_call
     def find_delta_neutral_arbitrage_opportunities(self, funding_rates):

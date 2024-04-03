@@ -11,9 +11,6 @@ load_dotenv()
 class eventsDirectory(Enum):
     FUNDING_RATE_DATA = "FUNDING_RATE_DATA"
 
-
-
-
 def initialise_client() -> Web3:
     try:
         client = Web3(Web3.HTTPProvider(os.getenv('BASE_PROVIDER_RPC')))

@@ -24,14 +24,16 @@ class ProfitabilityChecker:
         max_profit = float('-inf')
         most_profitable = None
         for opportunity in opportunities:
-            funding_rate = float(opportunity["funding_rate"])
+            binance_rate = float(opportunity["binance_rate_8hr"])
+            synthetix_rate = float(opportunity["synthetix_rate_8hr"])
+            differential = abs(synthetix_rate - binance_rate)
             
-            if abs(funding_rate) > max_profit:
-                max_profit = funding_rate
+            if differential > max_profit:
+                max_profit = differential
                 most_profitable = opportunity
 
         if most_profitable:
-            position = "short" if most_profitable["funding_rate"] > 0 else "long"
+            position = "short" if most_profitable["synthetix_rate_8hr"] > most_profitable["binance_rate_8hr"] else "long"
             logger.info(f"Best opportunity found, suggested position: {position}, details: {most_profitable}")
         else:
             logger.info("No profitable opportunities found.")
