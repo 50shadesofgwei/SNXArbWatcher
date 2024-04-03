@@ -1,5 +1,5 @@
 # Synthetix Funding Rate Arbitrage
-![Funding Rate Arbitrage Bot Template](https://github.com/50shadesofgwei/SynthetixFundingRateArbitrage/assets/111451828/eb931108-bdbb-4741-b2bc-def2de8e3370)
+![Funding Rate Arbitrage Bot Template](https://github.com/50shadesofgwei/SNXArbWatcher/blob/main/Assets/Banner.png
 
 ![Static Badge](https://img.shields.io/badge/Telegram-blue?link=https%3A%2F%2Ft.me%2F%2BualID7ueKuJjMWJk) ![Static Badge](https://img.shields.io/badge/License-MIT-green)
 
