@@ -39,10 +39,17 @@ class BinanceCaller:
     @log_function_call
     def _parse_funding_rate_data(self, funding_rate_data, symbol: str):
         if funding_rate_data:
+
+            
             return {
                 'exchange': 'Binance',
                 'symbol': symbol,
                 'funding_rate': funding_rate_data.get('fundingRate'),
+                'skew': skew,
+                'open_interest': open_interest,
+                'max_open_interest': max_open_interest,
+                'velocity': velocity,
+                'asset_price': asset_price
             }
         else:
             logger.info(f"BinanceAPICaller - No funding rate data available for symbol: {symbol}")

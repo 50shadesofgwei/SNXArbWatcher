@@ -23,11 +23,22 @@ class SynthetixCaller:
                 try:
                     market_data = markets_by_name[symbol]
                     funding_rate_24 = market_data['current_funding_rate']
+                    skew = market_data['skew']
+                    open_interest = market_data['size']
+                    max_open_interest = market_data['max_open_interest']
+                    asset_price = market_data['asset_price']
+                    velocity = market_data['current_funding_velocity']
                     funding_rate = funding_rate_24 / 3
+                    
                     market_funding_rates.append({
                         'exchange': 'Synthetix', 
                         'symbol': symbol,
                         'funding_rate': funding_rate,
+                        'skew': skew,
+                        'open_interest': open_interest,
+                        'max_open_interest': max_open_interest,
+                        'velocity': velocity,
+                        'asset_price': asset_price
                     })
                 except KeyError as e:
                     logger.error(f"SynthetixAPICaller - Error processing market data for {symbol}: {e}")
